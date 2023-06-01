@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 export default function Listing(props) {
     const {title, host, rating, available, mainImage, description, location} = props;
@@ -7,7 +9,10 @@ export default function Listing(props) {
                 {title}
             </h1>
             <p className="self-end mr-8 ">{location}</p>
-            <p className="self-end mr-8  text-default-color">{rating.guestSatisfactionOverall} / 5 </p>
+            <p className="self-end mr-8  text-default-color"> 
+                <FontAwesomeIcon icon={faStar} className="fa-xs mr-1"/> 
+                {rating.guestSatisfactionOverall} / 5 
+            </p>
             {
             host 
             &&
