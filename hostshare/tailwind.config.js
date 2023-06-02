@@ -10,7 +10,7 @@ module.exports = {
       'default-color': '#329a9a',
     },
     screens: {
-      sm: '750px',
+      sm: '860px',
       md: '950px',
       lg: '1340px'
     },

@@ -19,9 +19,9 @@ export default function Listing(props) {
                     ${price} / night
                 </p>
                 {
-                host
-                &&
-                <p className="self-end mr-8 text-default-color">- {host.name}</p>
+                    host
+                    &&
+                    <p className="self-end mr-8 text-default-color">- {host.name}</p>
                 }
                 <div className="max-w-sm max-h-64 overflow-hidden hover:max-h-none transition-all rounded-xl">
                     <img src={mainImage.url} alt="Main Image" className={`aspect-[${mainImage.aspectRatio}/1] max-w-sm rounded-xl z-0 mt-4 hover:z-10`}/>
