@@ -11,9 +11,10 @@ export default function Grid({listings}) {
                 key={i}
                 title={listing.info.title}
                 host={listing.info.host}
+                id={listing.info.id}
                 rating={listing.info.ratings}
                 location={listing.info.location.city}
-                available={listing.info.available}
+                price={listing.info.price}
                 maxGuest={listing.info.maxGuestCapacity}
                 images={listing.info.images.data}
                 mainImage={listing.info.mainImage}
