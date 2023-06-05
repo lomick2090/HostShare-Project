@@ -1,33 +1,37 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import listings from "../data/listings.json"
+import listings from "../../data/listings.json"
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from 'react-markdown'
 
 export default function ListingPage(){
-    const [descOn, setDescOn] = useState(false)
+    const [descOn, setDescOn] = useState(false);
+    const [picHover, setPicHover] = useState(false);
 
     const router = useRouter()
+    const listingId = router.query.listingId
     const listing = listings.data.find(element => {
-        return element.info.id == router.query.listingId
+        return element.info.id == listingId
     })
 
     function handleClick() {
         setDescOn(prevDesc => !prevDesc)
     }
 
-    
+    function onPicHover() {
+        setPicHover(prevHover => !prevHover)
+    }
 
     if (listing) {
-        console.log(listing)
         const {description, details, location, price, amenities, host, images, mainImage, ratings, title, type, visibleReviewCount} = listing.info
         const imageElements = [];
         for (let i = 3; i < 12; i++) {
             let image = images.data[i];
             imageElements.push(
-                <img  src={image.url} className={`w-1/3 h-1/3 aspect-[${image.aspectRatio}/1]  border-2`}/> 
+                <img  key={i} src={image.url} className={`w-1/3 h-1/3 aspect-[${image.aspectRatio}/1]  border-2`}/> 
             )
         }
 
@@ -65,14 +69,24 @@ export default function ListingPage(){
                     <br />
 
 
-                    <div className='flex justify-center h-[40vw]'>
+                    <div className='flex justify-center h-[40vw] relative' onMouseEnter={onPicHover} onMouseLeave={onPicHover}>
                         <img src={mainImage.url} alt="Main image" className="w-2/5 border-4"/>
                         <div className={`flex flex-wrap w-3/5`}>
                             {imageElements}
                         </div>
+                        {
+                            picHover 
+
+                            &&
+                            <Link href={`${router.query.listingId}/photos`}>
+                                <div className='bg-[white] p-4 rounded-lg font-bold absolute bottom-4 right-4' >
+                                    See All Photos
+                                </div>
+                            </Link>
+                        }
                     </div>
                     <br /><br /><br />
-                    <div className="flex ">
+                    <div className="flex flex-col sm:flex-row">
                         <div className="w-full sm:w-3/5 shadow-lg p-8">
                             {
                                 descOn ?
