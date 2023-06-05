@@ -11,24 +11,33 @@ export default function PhotosPage() {
         return element.info.id == listingId
     })
 
-    const {images} = listing.info
+    if (listing) {
+
+        const {images} = listing.info
+        
+        const imageElements = images.data.map((image, i) => {
+            return (
+                <div key={i}>
+                    <img src={image.url} className={`w-[${image.width}px] h-[${image.height}px] max-w-[45vw]`}/>
+                </div>
+            )
+        })
     
-    const imageElements = images.data.map((image, i) => {
         return (
-            <div key={i}>
-                <img src={image.url} className={`w-[${image.width}px] h-[${image.height}px] max-w-[45vw]`}/>
-            </div>
+            <Layout>
+                <Link href={`/${listingId}`} className="underline text-[blue] mt-8">Back</Link>
+                <div className="flex flex-wrap gap-4 justify-center mt-8">
+                    {imageElements}
+                </div>
+                <Link href={`/listingId`} className="underline text-[blue] mb-8 mt-4">Back</Link>
+    
+            </Layout>
         )
-    })
-
-    return (
-        <Layout>
-            <Link href={`/${listingId}`} className="underline text-[blue] mt-8">Back</Link>
-            <div className="flex flex-wrap gap-4 justify-center mt-8">
-                {imageElements}
-            </div>
-            <Link href={`/listingId`} className="underline text-[blue] mb-8 mt-4">Back</Link>
-
-        </Layout>
-    )
+    } else {
+        return (
+            <Layout>
+                
+            </Layout>
+        )
+    }
 }
