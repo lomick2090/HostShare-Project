@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from 'react-markdown'
+import Amentity from "../../components/Amenity";
 
 export default function ListingPage(){
     const [descOn, setDescOn] = useState(false);
@@ -35,6 +36,18 @@ export default function ListingPage(){
             )
         }
 
+        const rawAmenityTags = amenities.data.map(amenity => {
+            return amenity.group
+        })
+
+        const amenityTags = [... new Set(rawAmenityTags)]
+
+        const amenitiesElements = amenityTags.map((amenityTag, i) => {
+
+            return (
+                <Amentity key={i} amenityTag={amenityTag} amenities={amenities.data} />
+            )
+        })
         
     
         return (
@@ -126,12 +139,21 @@ export default function ListingPage(){
 
                             <br/> <br/>
                             <div className="flex justify-center">
-
                                 <button className="bg-[red] text-[white] font-bold p-1 rounded-md">Book Now</button>
                             </div>
                             
                         </div>
 
+                    </div>
+
+                    
+                        <div className="w-full sm:w-3/5 shadow-lg p-8 self-start flex flex-col flex-wrap gap-4">
+                            <h1 className="font-bold font-8">Amenities</h1>
+                            <div className="flex flex-wrap gap-4">
+                                {amenitiesElements}
+                            </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row">
                     </div>
                 </div>
                 }
