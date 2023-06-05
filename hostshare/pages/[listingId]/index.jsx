@@ -60,22 +60,29 @@ export default function ListingPage(){
                 <div className="w-4/5 flex flex-col items-center mt-8">
 
                     <h1 className="text-[40px] font-bold">{title}</h1>
-
                     <br />
 
-                    <div className="self-start">
-                        <p className="font-bold">{location.city}</p>
-                        <p className="text-default-color">
-                            <FontAwesomeIcon icon={faStar} className="fa-xs mr-1"/>
-                            {ratings.guestSatisfactionOverall} / 5
-                        </p>
-                        <p className=" text-default-color">
-                            ${price} / night
-                        </p>
+                    <div className="flex justify-start w-full items-center">
+                        <div>
+                            <p className="font-bold">{location.city}</p>
+                            <p className="text-default-color">
+                                <FontAwesomeIcon icon={faStar} className="fa-xs mr-1"/>
+                                {ratings.guestSatisfactionOverall} / 5
+                            </p>
+                            <p className=" text-default-color">
+                                ${price} / night
+                            </p>
+
+                        </div>
+
                         {
                             host
-                            &&
-                            <p className="text-default-color">{host.name}</p>
+                                &&
+                                
+                            <div className="ml-auto flex flex-col items-center">
+                                <img src={host.avatar.url} alt="hostimage" className={`w-[57.5px] rounded-full`}/>
+                                <p className="text-default-color">{host.name}</p>
+                            </div>
                         }
                     </div>
 
@@ -100,7 +107,7 @@ export default function ListingPage(){
                     </div>
                     <br /><br /><br />
                     <div className="flex flex-col sm:flex-row">
-                        <div className="w-full sm:w-3/5 shadow-lg p-8">
+                        <div className="w-full sm:w-3/5 shadow-lg p-8 bg-[white]">
                             {
                                 descOn ?
 
@@ -128,17 +135,21 @@ export default function ListingPage(){
                             }
                         </div>
 
-                        <div className="sticky top-24 w-2/7 ml-auto mr-auto shadow-lg p-8 h-min">
+                        <div className="sticky top-32 w-2/7 ml-auto mr-auto shadow-lg p-8 h-min bg-[white] mt-4">
                             <div className="flex justify-between">
-                                <p>Check-in</p> <p>Check-out</p>
+                                <div className="flex flex-col">
+                                    <p>Check-in</p> 
+                                    <input type="date" className="border-2"/>
+                                </div>
+                                <div className="flex flex-col">   
+                                    <p>Check-out</p>
+                                    <input type="date" className="border-2"/>
+                                </div>
                             </div>
-                            <input type="date" className="border-2"/>
-                            <input type="date" className="border-2"/>
-                            <br />
                             <input type="number" placeholder="number of guests" className="border-2 w-full"/>
 
-                            <br/> <br/>
-                            <div className="flex justify-center">
+                            <br/>
+                            <div className="flex justify-center mt-2">
                                 <button className="bg-[red] text-[white] font-bold p-1 rounded-md">Book Now</button>
                             </div>
                             
@@ -147,7 +158,7 @@ export default function ListingPage(){
                     </div>
 
                     
-                        <div className="w-full sm:w-3/5 shadow-lg p-8 self-start flex flex-col flex-wrap gap-4">
+                        <div className="w-full sm:w-3/5 shadow-lg p-8 self-start flex flex-col flex-wrap gap-4 bg-[white] mt-4 mb-96">
                             <h1 className="font-bold font-8">Amenities</h1>
                             <div className="flex flex-wrap gap-4">
                                 {amenitiesElements}

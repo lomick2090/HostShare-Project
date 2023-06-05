@@ -13,7 +13,7 @@ export default function Amentity({amenityTag, amenities}) {
 
     const amentityElements = filteredAmenities.map(amenity => {
         return (
-            <p className="whitespace-nowrap">{amenity.title}</p>
+            <li key={amenity.title} className="whitespace-nowrap">{amenity.title}</li>
         )
     })
 
@@ -28,8 +28,10 @@ export default function Amentity({amenityTag, amenities}) {
 
                 &&
 
-                <div className="flex flex-col p-8 z-30 bg-[white] rounded-md absolute left-0 bottom-8 border-2">
-                    {amentityElements}
+                <div className="flex flex-col p-8 z-30 bg-[white] rounded-md absolute left-0 bottom-10 border-2">
+                    <ul>
+                        {amentityElements}
+                    </ul>
                 </div>
             }
         </div>
