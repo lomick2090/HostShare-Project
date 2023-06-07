@@ -5,8 +5,7 @@ import listings from '../data/listings.json'
 export default function Home() {
   return (
       <Layout>
-        <div className="text-center">searchbar</div>
-
+        <br />
         <div className="flex justify-center">
           <Grid listings={listings}/>
         </div>
